@@ -1,8 +1,14 @@
+import React from "react";
+import Header from './components/Header';
+import Main from './components/Main'
+
 function App() {
   return (
-    <header className="App-header">
-      <p>hello react</p>
-    </header>
+    <>
+      <Header />
+      <Main />
+    </>
+    
   );
 }
 
