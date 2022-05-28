@@ -9,7 +9,7 @@ const TimePost = (props) => (
 );
 
 TimePost.propTypes = {
-  date: PropTypes.number,
+  date: PropTypes.string,
 };
 
 export default TimePost;
