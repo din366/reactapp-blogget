@@ -4,6 +4,7 @@ import Image from './Image/Image';
 import Rating from './Rating/Rating';
 import TimePost from './TimePost/TimePost';
 import DeleteButton from './DeleteButton/DeleteButton';
+import {Text} from '../../../../UI/Text';
 
 export const Post = ({postData}) => {
   const {title, author, ups, date} = postData;
@@ -12,10 +13,12 @@ export const Post = ({postData}) => {
       <Image title={title}/>
 
       <div className={style.content}>
-        <h2 className={style.title}>
-          <a className={style.linkPost} href='#post'>{title}</a>
-        </h2>
-        <a className={style.linkAuthor} href="#author">{author}</a>
+        <Text As='h2' className={style.title}>
+          <Text As='a' size={18} tsize={24}
+            className={style.linkPost} href='#post'>{title}</Text>
+        </Text>
+        <Text As='a' size={12} tsize={14} color='orange'
+          className={style.linkAuthor} href="#author">{author}</Text>
       </div>
 
       <Rating ups={ups}/>
