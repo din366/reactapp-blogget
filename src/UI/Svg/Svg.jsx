@@ -1,30 +1,28 @@
-/* import classNames from 'classnames';
-import style from './Text.module.css'; */
 import PropTypes from 'prop-types';
-import React from 'react';
+import {ReactComponent as TestSvg}
+  from '../../components/Main/List/Post/img/down.svg';
+
+const iconList = {
+  TestSvg,
+};
 
 export const Svg = (prop) => {
   const {
-    href,
+    icon,
+    width,
+    height,
+    fill,
   } = prop;
+  const Icon = iconList[icon];
 
-  React.createElement('svg');
-  /* const classes = classNames(
-    className,
-    style[`fs${size}`],
-    style[color],
-    {[style.medium]: medium},
-    {[style.bold]: bold},
-    {[style.center]: center},
-    {[style[`fs${size}`]]: size},
-    {[style[`fst${tsize}`]]: tsize},
-    {[style[`fsd${dsize}`]]: dsize},
-  ); */
-
-  return <img href={href}></img>;
+  return <Icon width={width} height={height} fill={fill}></Icon>;
 };
 
-Text.propTypes = {
-  href: PropTypes.string,
+Svg.propTypes = {
+  icon: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  fill: PropTypes.string,
 };
 
+// ! for test <Svg icon='TestSvg' width={20} height={20} fill='red'></Svg>
