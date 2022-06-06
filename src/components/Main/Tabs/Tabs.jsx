@@ -11,17 +11,22 @@ import {ReactComponent as HotIcon} from './img/hot.svg';
 import {debounceRaf} from '../../../utils/debounce';
 import {Text} from '../../../UI/Text';
 
+import {postsContext} from '../../../context/postsContext';
+import {useContext} from 'react';
+
 const LIST = [
-  {value: 'Главная', Icon: EyeIcon},
-  {value: 'Топ', Icon: TopIcon},
-  {value: 'Лучшие', Icon: BestIcon},
-  {value: 'Горячие', Icon: HotIcon},
+  {value: 'Главная', Icon: EyeIcon, handing: 'hot'},
+  {value: 'Топ', Icon: TopIcon, handing: 'top'},
+  {value: 'Лучшие', Icon: BestIcon, handing: 'best'},
+  {value: 'Горячие', Icon: HotIcon, handing: 'hot'},
 ].map(assignId);
 
 export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [currentMenuItem, setCurrentMenuItem] = useState('Главная');
+
+  const {setPostCategory} = useContext(postsContext);
 
   const handleResize = () => {
     if (document.documentElement.clientWidth < 768) {
@@ -57,10 +62,11 @@ export const Tabs = () => {
       {/* Если dropdown true - откроется меню */}
       {(isDropdownOpen || !isDropdown) && (
         <ul className={style.list} onClick={() => setIsDropdownOpen(false)}>
-          {LIST.map(({value, id, Icon}) => (
+          {LIST.map(({value, id, Icon, handing}) => (
             <Text as="li" medium className={style.item} key={id}>
               <button className={style.btn} onClick={() => {
                 setCurrentMenuItem(value);
+                setPostCategory(handing);
               }}>
                 {value}
                 {Icon && <Icon width={25} height={25}/>}

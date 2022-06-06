@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import notphoto from '../img/notphoto.jpg';
 
 export const Image = (props) => (
-  <img className={style.img} src={notphoto} alt={props.title} />
+  <img className={style.img} src={notphoto}
+    alt={props.title} />
 );
 
 export default Image;
@@ -11,4 +12,5 @@ export default Image;
 Image.propTypes = {
   title: PropTypes.string,
   ariaLabel: PropTypes.string,
+  thumbnail: PropTypes.string,
 };
