@@ -4,25 +4,26 @@ import Image from './Image/Image';
 import Rating from './Rating/Rating';
 import TimePost from './TimePost/TimePost';
 import DeleteButton from './DeleteButton/DeleteButton';
-import {Text} from '../../../../UI/Text';
+import {Content} from './Content/Content';
 
 export const Post = ({postData}) => {
-  const {title, author, ups, date} = postData;
+  const {
+    title,
+    author,
+    ups,
+    created,
+    selftext: markdown,
+    id,
+    thumbnail} = postData;
+
   return (
     <li className={style.post}>
-      <Image title={title}/>
+      <Image title={title} src={thumbnail}/>
 
-      <div className={style.content}>
-        <Text As='h2' className={style.title}>
-          <Text As='a' size={18} tsize={24}
-            className={style.linkPost} href='#post'>{title}</Text>
-        </Text>
-        <Text As='a' size={12} tsize={14} color='orange'
-          className={style.linkAuthor} href="#author">{author}</Text>
-      </div>
+      <Content title={title} author={author} markdown={markdown} id={id}/>
 
       <Rating ups={ups}/>
-      <TimePost date={date}/>
+      <TimePost date={created}/>
       <DeleteButton/>
     </li>
   );

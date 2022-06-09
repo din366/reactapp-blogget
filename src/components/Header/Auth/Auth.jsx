@@ -8,7 +8,6 @@ import {Text} from '../../../UI/Text';
 import {tokenContext} from '../../../context/tokenContext';
 import {authContext} from '../../../context/authContext';
 
-
 export const Auth = () => {
   const {delToken} = useContext(tokenContext);
   const [isExitButton, setIsExitButton] = useState(false);
@@ -22,8 +21,6 @@ export const Auth = () => {
     delToken();
     clearAuth({});
   };
-
-  /*   useAuth(token, setAuth, delToken); */
 
   return (
     <div className={style.container}>
