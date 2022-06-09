@@ -18,3 +18,4 @@ Image.propTypes = {
   thumbnail: PropTypes.string,
   src: PropTypes.string,
 };
+
