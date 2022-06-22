@@ -5,11 +5,10 @@ import PropTypes from 'prop-types';
 import {ReactComponent as LoginIcon} from './img/login.svg';
 import {urlAuth} from '../../../api/auth';
 import {Text} from '../../../UI/Text';
-import {tokenContext} from '../../../context/tokenContext';
 import {authContext} from '../../../context/authContext';
+import {deleteToken, store} from '../../../store';
 
 export const Auth = () => {
-  const {delToken} = useContext(tokenContext);
   const [isExitButton, setIsExitButton] = useState(false);
   const {auth, clearAuth} = useContext(authContext);
 
@@ -18,7 +17,7 @@ export const Auth = () => {
   };
 
   const logOut = () => {
-    delToken();
+    store.dispatch(deleteToken());
     clearAuth({});
   };
 

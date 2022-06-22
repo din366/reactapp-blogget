@@ -1,10 +1,10 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {URL_API} from '../api/const';
-import {tokenContext} from '../context/tokenContext';
+import {deleteToken, store} from '../store';
 
 export const useAuth = () => {
   const [auth, setAuth] = useState({});
-  const {token, delToken} = useContext(tokenContext);
+  const token = store.getState().token;
 
   useEffect(() => {
     if (!token) return;
@@ -15,7 +15,8 @@ export const useAuth = () => {
       },
     }).then(responce => {
       if (responce.status === 401) {
-        delToken(); // delete token in localStorage if responce error auth
+        store.dispatch(deleteToken());
+        // delete token in localStorage if responce error auth
       }
       return responce.json();
     })
@@ -26,7 +27,7 @@ export const useAuth = () => {
       .catch(err => {
         console.log(err);
         setAuth({});
-        delToken();
+        store.dispatch(deleteToken());
       });
   }, [token]);
 

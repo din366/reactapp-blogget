@@ -1,11 +1,11 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {URL_API} from '../api/const';
-import {tokenContext} from '../context/tokenContext';
+import {store} from '../store';
 
 export const useGetPosts = (prop = 'best') => {
   const [data, setData] = useState({});
 
-  const {token} = useContext(tokenContext);
+  const token = store.getState().token;
 
   useEffect(() => {
     if (!token) return;
@@ -25,4 +25,3 @@ export const useGetPosts = (prop = 'best') => {
   return [data, setData];
 };
 /* prop.handing = best */
-

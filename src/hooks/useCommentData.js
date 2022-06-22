@@ -1,10 +1,10 @@
-import {useContext, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {URL_API} from '../api/const';
-import {tokenContext} from '../context/tokenContext';
+import {store} from '../store';
 
 export const useCommentsData = (prop) => {
   const [data, setData] = useState({});
-  const {token} = useContext(tokenContext);
+  const token = store.getState().token;
 
   useEffect(() => {
     if (!token) return;
