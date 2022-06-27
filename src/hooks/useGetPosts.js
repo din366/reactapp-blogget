@@ -5,7 +5,7 @@ import {store} from '../store';
 export const useGetPosts = (prop = 'best') => {
   const [data, setData] = useState({});
 
-  const token = store.getState().token;
+  const token = store.getState().tokenReducer.token;
 
   useEffect(() => {
     if (!token) return;

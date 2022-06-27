@@ -4,7 +4,7 @@ import {store} from '../store';
 
 export const useCommentsData = (prop) => {
   const [data, setData] = useState({});
-  const token = store.getState().token;
+  const token = store.getState().tokenReducer.token;
 
   useEffect(() => {
     if (!token) return;
