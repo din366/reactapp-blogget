@@ -8,12 +8,15 @@ import {Text} from '../../../UI/Text';
 import {deleteToken} from '../../../store/tokenReducer';
 import {useDispatch} from 'react-redux';
 import {useAuth} from '../../../hooks/useAuth';
-import AuthLoader from './AuthLoader';
+import AuthLoader from './../../../UI/AuthLoader';
+import {ModalNotifications} from '../../ModalNotifications/ModalNotifications';
+import {store} from '../../../store';
 
 export const Auth = () => {
   const [isExitButton, setIsExitButton] = useState(false);
   const [auth, loading, clearAuth] = useAuth();
   const dispatch = useDispatch();
+  const notificationText = store.getState().auth.error;
 
   const getOut = () => {
     setIsExitButton(!isExitButton);
@@ -38,6 +41,7 @@ export const Auth = () => {
         <LoginIcon className={style.svg}/>
       </Text>
       }
+      {(notificationText) ? (<ModalNotifications notificationText={notificationText}/>) : ''}
     </div>
   );
 };

@@ -10,7 +10,7 @@ import {Comments} from './Comments/Comments';
 
 export const Modal = ({id, closeModal}) => {
   const overlayRef = useRef(null);
-  const [data/* , setData */] = useCommentsData(id);
+  const [data, status] = useCommentsData(id);
   const [isFormShow, setIsFormShow] = useState(false);
   const handleClick = e => {
     const target = e.target;
@@ -39,8 +39,9 @@ export const Modal = ({id, closeModal}) => {
   return ReactDOM.createPortal(
     <div className={style.overlay} ref={overlayRef}>
       <div className={style.modal}>
-        { (Object.keys(data).length === 0) ?
-          (<h2 className={style.title}>Загрузка...</h2>) : (
+        {status === 'loading' && 'Загрузка...'}
+        {status === 'error' && 'ошибка'}
+        {status === 'loaded' && (
           <>
             <h2 className={style.title}>{data[0].title}</h2>
             <div className={style.content}>

@@ -1,0 +1,14 @@
+.bar {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ef5350;
+  color: white;
+  font-size: 18px;
+}
+
+.show {
+  background-color: blue;
+}
