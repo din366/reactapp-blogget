@@ -16,7 +16,11 @@ export const Auth = () => {
   const [isExitButton, setIsExitButton] = useState(false);
   const [auth, loading, clearAuth] = useAuth();
   const dispatch = useDispatch();
-  const notificationText = store.getState().auth.error;
+  const [notificationText, setNotificationState] = useState(store.getState().auth.error);
+
+  store.subscribe(() => {
+    setNotificationState(store.getState().auth.error);
+  });
 
   const getOut = () => {
     setIsExitButton(!isExitButton);
@@ -41,7 +45,7 @@ export const Auth = () => {
         <LoginIcon className={style.svg}/>
       </Text>
       }
-      {(notificationText) ? (<ModalNotifications notificationText={notificationText}/>) : ''}
+      {(notificationText || notificationText !== null) ? (<ModalNotifications notificationText={notificationText}/>) : ''}
     </div>
   );
 };

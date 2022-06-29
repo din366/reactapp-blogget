@@ -44,5 +44,8 @@ export const authRequestAsync = () => (dispatch, getState) => {
     .catch(err => {
       dispatch(deleteToken());
       dispatch(authRequestError(err.toString()));
+      setTimeout(() => {
+        dispatch(authRequestError(null));
+      }, 2000);
     });
 };
