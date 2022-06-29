@@ -17,6 +17,7 @@ export const Auth = () => {
   const [auth, loading, clearAuth] = useAuth();
   const dispatch = useDispatch();
   const [notificationText, setNotificationState] = useState(store.getState().auth.error);
+  console.log(Boolean(notificationText));
 
   store.subscribe(() => {
     setNotificationState(store.getState().auth.error);
@@ -45,7 +46,7 @@ export const Auth = () => {
         <LoginIcon className={style.svg}/>
       </Text>
       }
-      {(notificationText || notificationText !== null) ? (<ModalNotifications notificationText={notificationText}/>) : ''}
+      {(notificationText && notificationText !== null) ? (<ModalNotifications notificationText={notificationText}/>) : ''}
     </div>
   );
 };

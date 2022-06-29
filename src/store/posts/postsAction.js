@@ -22,7 +22,7 @@ export const postsRequestError = (error) => ({
 export const postsRequestAsync = (prop) => (dispatch, getState) => {
   const token = getState().tokenReducer.token;
   if (!token) return;
-  axios(`${URL_API}/${prop}`, {
+  axios(`${URL_API}/${prop}?limit=10`, {
     headers: {
       Authorization: `bearer ${token}`
     },
