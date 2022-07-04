@@ -64,7 +64,7 @@ export const postsRequestAsync = (newPage, more) => (dispatch, getState) => {
   }).then((data) => {
     const postsArray = data.data.data;
     if (after) {
-      dispatch(postsRequestSuccessAfter(postsArray, more ? 2 : afterCount));
+      dispatch(postsRequestSuccessAfter(postsArray, more ? 1 : afterCount));
     } else {
       dispatch(postsRequestSuccess(postsArray));
     }
