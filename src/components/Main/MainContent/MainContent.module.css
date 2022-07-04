@@ -1,0 +1,21 @@
+.title {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.welcome {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.choice {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+}

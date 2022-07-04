@@ -68,8 +68,12 @@ export const Tabs = () => {
             <Text as="li" medium className={style.item} key={id}>
               <button className={style.btn} onClick={() => {
                 setCurrentMenuItem(value);
-                navigate(`/category/${handing}`);
-                setPostCategory(handing);
+                if (handing === 'main') {
+                  navigate(`/`);
+                } else {
+                  navigate(`/category/${handing}`);
+                  setPostCategory(handing);
+                }
               }}>
                 {value}
                 {Icon && <Icon width={25} height={25}/>}

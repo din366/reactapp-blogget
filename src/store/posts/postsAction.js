@@ -17,10 +17,11 @@ export const postsRequestSuccess = (data) => ({
   after: data.after,
 });
 
-export const postsRequestSuccessAfter = (data) => ({
+export const postsRequestSuccessAfter = (data, count = 0) => ({
   type: POSTS_REQUEST_SUCCESS_AFTER,
   data: data.children,
   after: data.after,
+  afterCount: count,
 });
 
 export const postsRequestError = (error) => ({
@@ -33,19 +34,25 @@ export const changePage = (page) => ({
   page,
 });
 
-export const postsRequestAsync = (newPage) => (dispatch, getState) => {
+export const postsRequestAsync = (newPage, more) => (dispatch, getState) => {
   let page = getState().posts.page;
 
-  console.log(page);
   if (newPage) {
     page = newPage;
     dispatch(changePage(page));
+  }
+
+  if (page === 'main') {
+    dispatch(changePage(page));
+    return;
   }
 
   const token = getState().tokenReducer.token;
   const after = getState().posts.after;
   const loading = getState().posts.loading;
   const isLast = getState().posts.isLast;
+  const afterCount = getState().posts.afterCount;
+  console.log(after);
 
   if (!token || loading || isLast) return;
   dispatch(postsRequest());
@@ -57,7 +64,7 @@ export const postsRequestAsync = (newPage) => (dispatch, getState) => {
   }).then((data) => {
     const postsArray = data.data.data;
     if (after) {
-      dispatch(postsRequestSuccessAfter(postsArray));
+      dispatch(postsRequestSuccessAfter(postsArray, more ? 2 : afterCount));
     } else {
       dispatch(postsRequestSuccess(postsArray));
     }
