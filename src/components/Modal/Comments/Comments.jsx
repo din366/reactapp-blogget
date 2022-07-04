@@ -5,7 +5,7 @@ import {SingleComment} from './SingleComment/SingleComment';
 export const Comments = ({comments}) => (
   <ul className={style.list}>
     {(comments.length === 0) ? <p>Комментариев нет</p> :
-      (comments.map((data) => (
+      (comments.map((data) => data.data && (
         <SingleComment
           author={data.data.author}
           postText={data.data.body}
@@ -15,6 +15,7 @@ export const Comments = ({comments}) => (
       )))}
   </ul>
 );
+
 
 Comments.propTypes = {
   comments: PropTypes.array,

@@ -13,9 +13,10 @@ import {Text} from '../../../UI/Text';
 
 import {postsContext} from '../../../context/postsContext';
 import {useContext} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 const LIST = [
-  {value: 'Главная', Icon: EyeIcon, handing: 'hot'},
+  {value: 'Главная', Icon: EyeIcon, handing: 'main'},
   {value: 'Топ', Icon: TopIcon, handing: 'top'},
   {value: 'Лучшие', Icon: BestIcon, handing: 'best'},
   {value: 'Горячие', Icon: HotIcon, handing: 'hot'},
@@ -25,6 +26,7 @@ export const Tabs = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [currentMenuItem, setCurrentMenuItem] = useState('Главная');
+  const navigate = useNavigate();
 
   const {setPostCategory} = useContext(postsContext);
 
@@ -66,6 +68,7 @@ export const Tabs = () => {
             <Text as="li" medium className={style.item} key={id}>
               <button className={style.btn} onClick={() => {
                 setCurrentMenuItem(value);
+                navigate(`/category/${handing}`);
                 setPostCategory(handing);
               }}>
                 {value}
