@@ -4,9 +4,9 @@ import {store} from '../store';
 import {singlePostRequestAsync} from '../store/singlePost/singlePostAction';
 
 export const useCommentsData = (prop) => {
-  const data = useSelector(state => state.singlePost.data);
+  const data = useSelector(state => state.comments.data);
   const token = store.getState().tokenReducer.token;
-  const status = useSelector(state => state.singlePost.status);
+  const status = useSelector(state => state.comments.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
